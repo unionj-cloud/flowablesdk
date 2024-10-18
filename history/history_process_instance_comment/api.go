@@ -1,8 +1,8 @@
 package history_process_instance_comment
 
 import (
-	"github.com/topology-zero/flowablesdk"
-	"github.com/topology-zero/flowablesdk/pkg/httpclient"
+	"github.com/unionj-cloud/flowablesdk"
+	"github.com/unionj-cloud/flowablesdk/pkg/httpclient"
 )
 
 const (

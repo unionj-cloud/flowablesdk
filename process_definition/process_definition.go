@@ -5,10 +5,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/topology-zero/flowablesdk"
-	"github.com/topology-zero/flowablesdk/candidate"
-	"github.com/topology-zero/flowablesdk/common"
-	"github.com/topology-zero/flowablesdk/pkg/httpclient"
+	"github.com/unionj-cloud/flowablesdk"
+	"github.com/unionj-cloud/flowablesdk/candidate"
+	"github.com/unionj-cloud/flowablesdk/common"
+	"github.com/unionj-cloud/flowablesdk/pkg/httpclient"
 )
 
 type ProcessDefinition struct {
@@ -109,8 +109,8 @@ func List(req ListRequest) (list []ProcessDefinition, count int, err error) {
 }
 
 // Detail 获取流程详情
-func Detail(deploymentId string) (resp ProcessDefinition, err error) {
-	request := flowablesdk.GetRequest(DetailApi, deploymentId)
+func Detail(processDefinitionId string) (resp ProcessDefinition, err error) {
+	request := flowablesdk.GetRequest(DetailApi, processDefinitionId)
 	data, err := request.DoHttpRequest()
 	if err != nil {
 		return
@@ -123,21 +123,24 @@ func Detail(deploymentId string) (resp ProcessDefinition, err error) {
 // Update 更新流程
 //
 // 更新 category
-// {
-//  "category" : "updatedcategory"
-// }
+//
+//	{
+//	 "category" : "updatedcategory"
+//	}
 //
 // 更新为 Suspend 状态
-// {
-//  "action" : "suspend",
-// }
+//
+//	{
+//	 "action" : "suspend",
+//	}
 //
 // 更新为 activate 状态
-// {
-//  "action" : "activate",
-// }
-func Update(deploymentId string, req UpdateRequest) (resp ProcessDefinition, err error) {
-	request := flowablesdk.GetRequest(UpdateApi, deploymentId)
+//
+//	{
+//	 "action" : "activate",
+//	}
+func Update(processDefinitionId string, req UpdateRequest) (resp ProcessDefinition, err error) {
+	request := flowablesdk.GetRequest(UpdateApi, processDefinitionId)
 	request.With(httpclient.WithJson(req))
 	data, err := request.DoHttpRequest()
 	if err != nil {
@@ -149,8 +152,8 @@ func Update(deploymentId string, req UpdateRequest) (resp ProcessDefinition, err
 }
 
 // ResourceContent 获取流程的xml
-func ResourceContent(deploymentId string) (resp string, err error) {
-	request := flowablesdk.GetRequest(ResourceContentApi, deploymentId)
+func ResourceContent(processDefinitionId string) (resp string, err error) {
+	request := flowablesdk.GetRequest(ResourceContentApi, processDefinitionId)
 	data, err := request.DoHttpRequest()
 	if err != nil {
 		return
@@ -159,8 +162,8 @@ func ResourceContent(deploymentId string) (resp string, err error) {
 }
 
 // Model 获取流程的 BPMN models
-func Model(deploymentId string) (resp map[string]any, err error) {
-	request := flowablesdk.GetRequest(ModelApi, deploymentId)
+func Model(processDefinitionId string) (resp map[string]any, err error) {
+	request := flowablesdk.GetRequest(ModelApi, processDefinitionId)
 	data, err := request.DoHttpRequest()
 	if err != nil {
 		return
@@ -170,8 +173,8 @@ func Model(deploymentId string) (resp map[string]any, err error) {
 }
 
 // ListCandidate 获取流程所有候选人
-func ListCandidate(deploymentId string) (resp []candidate.Candidate, err error) {
-	request := flowablesdk.GetRequest(ListCandidateApi, deploymentId)
+func ListCandidate(processDefinitionId string) (resp []candidate.Candidate, err error) {
+	request := flowablesdk.GetRequest(ListCandidateApi, processDefinitionId)
 	data, err := request.DoHttpRequest()
 	if err != nil {
 		return
@@ -181,8 +184,8 @@ func ListCandidate(deploymentId string) (resp []candidate.Candidate, err error) 
 }
 
 // AddCandidate 流程添加候选人/候选组
-func AddCandidate(deploymentId string, req AddCandidateRequest) (resp candidate.Candidate, err error) {
-	request := flowablesdk.GetRequest(AddCandidateApi, deploymentId)
+func AddCandidate(processDefinitionId string, req AddCandidateRequest) (resp candidate.Candidate, err error) {
+	request := flowablesdk.GetRequest(AddCandidateApi, processDefinitionId)
 	request.With(httpclient.WithJson(req))
 	data, err := request.DoHttpRequest()
 	if err != nil {
@@ -193,7 +196,7 @@ func AddCandidate(deploymentId string, req AddCandidateRequest) (resp candidate.
 }
 
 // DeleteCandidate 流程删除候选人
-func DeleteCandidate(deploymentId string, req DeleteCandidateRequest) error {
+func DeleteCandidate(processDefinitionId string, req DeleteCandidateRequest) error {
 	if len(req.Family) == 0 {
 		return errors.New("family is empty")
 	}
@@ -206,7 +209,7 @@ func DeleteCandidate(deploymentId string, req DeleteCandidateRequest) error {
 		return errors.New("family only allow users or groups")
 	}
 
-	request := flowablesdk.GetRequest(DeleteCandidateApi, deploymentId, req.Family, req.CandidateId)
+	request := flowablesdk.GetRequest(DeleteCandidateApi, processDefinitionId, req.Family, req.CandidateId)
 	_, err := request.DoHttpRequest()
 	if err != nil {
 		return err
@@ -215,7 +218,7 @@ func DeleteCandidate(deploymentId string, req DeleteCandidateRequest) error {
 }
 
 // CandidateDetail 查看流程指定候选人
-func CandidateDetail(deploymentId string, req DeleteCandidateRequest) (resp candidate.Candidate, err error) {
+func CandidateDetail(processDefinitionId string, req DeleteCandidateRequest) (resp candidate.Candidate, err error) {
 	if len(req.Family) == 0 {
 		err = errors.New("family is empty")
 		return
@@ -231,7 +234,7 @@ func CandidateDetail(deploymentId string, req DeleteCandidateRequest) (resp cand
 		return
 	}
 
-	request := flowablesdk.GetRequest(CandidateDetailApi, deploymentId, req.Family, req.CandidateId)
+	request := flowablesdk.GetRequest(CandidateDetailApi, processDefinitionId, req.Family, req.CandidateId)
 	data, err := request.DoHttpRequest()
 	if err != nil {
 		return

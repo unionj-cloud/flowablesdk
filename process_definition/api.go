@@ -1,15 +1,15 @@
 package process_definition
 
 import (
-	"github.com/topology-zero/flowablesdk"
-	"github.com/topology-zero/flowablesdk/pkg/httpclient"
+	"github.com/unionj-cloud/flowablesdk"
+	"github.com/unionj-cloud/flowablesdk/pkg/httpclient"
 )
 
 const (
 	baseUrl            = "/repository/process-definitions"
 	detailUrl          = baseUrl + "/%s"
 	ResourceContentUrl = detailUrl + "/resourcedata"
-	ModelUrl           = detailUrl + "/models"
+	ModelUrl           = detailUrl + "/model"
 	CandidateUrl       = detailUrl + "/identitylinks"
 	CandidateDetailUrl = CandidateUrl + "/%s/%s"
 )

@@ -1,8 +1,8 @@
 package history_variable_instance
 
 import (
-	"github.com/topology-zero/flowablesdk/common"
-	"github.com/topology-zero/flowablesdk/variable"
+	"github.com/unionj-cloud/flowablesdk/common"
+	"github.com/unionj-cloud/flowablesdk/variable"
 )
 
 type ListRequest struct {

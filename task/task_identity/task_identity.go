@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/topology-zero/flowablesdk"
-	"github.com/topology-zero/flowablesdk/candidate"
-	"github.com/topology-zero/flowablesdk/pkg/httpclient"
+	"github.com/unionj-cloud/flowablesdk"
+	"github.com/unionj-cloud/flowablesdk/candidate"
+	"github.com/unionj-cloud/flowablesdk/pkg/httpclient"
 )
 
 // List 获取任务的所有相关人员(包括组和人)
@@ -63,16 +63,18 @@ func Detail(taskId string, req DetailRequest) (resp candidate.Candidate, err err
 // Add 任务添加相关人员
 //
 // 添加人到任务, type 可以自定义
-//{
-//  "userId" : "kermit",
-//  "type" : "candidate",
-//}
+//
+//	{
+//	 "userId" : "kermit",
+//	 "type" : "candidate",
+//	}
 //
 // 添加组到任务, type 可以自定义
-//{
-//  "groupId" : "sales",
-//  "type" : "candidate",
-//}
+//
+//	{
+//	 "groupId" : "sales",
+//	 "type" : "candidate",
+//	}
 func Add(taskId string, req AddRequest) (resp candidate.Candidate, err error) {
 	request := flowablesdk.GetRequest(AddApi, taskId)
 	request.With(httpclient.WithJson(req))

@@ -1,7 +1,7 @@
 package history_detail
 
 import (
-	"github.com/topology-zero/flowablesdk/common"
+	"github.com/unionj-cloud/flowablesdk/common"
 )
 
 type ListRequest struct {
