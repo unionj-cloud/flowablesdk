@@ -228,3 +228,10 @@ func UpdateFileVariable(instanceId string, req variable.FileVariableRequest) (re
 	err = json.Unmarshal(data, &resp)
 	return
 }
+
+// EvaluateConditions 触发条件计算使流程继续执行
+func EvaluateConditions(instanceId string) (err error) {
+	request := flowablesdk.GetRequest(EvaluateConditionsApi, instanceId)
+	_, err = request.DoHttpRequest()
+	return
+}

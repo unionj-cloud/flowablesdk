@@ -14,6 +14,8 @@ func GetRequest(api *Api, params ...any) *httpclient.Request {
 		url += Configs.ProcessPrefix
 	} else if api.Prefix == FormPrefix {
 		url += Configs.FormPrefix
+	} else if api.Prefix == ExtensionPrefix {
+		url += Configs.ExtensionPrefix
 	}
 	url += api.Url
 

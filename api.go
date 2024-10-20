@@ -11,6 +11,7 @@ type Api struct {
 const (
 	ProcessPrefix = iota
 	FormPrefix
+	ExtensionPrefix
 )
 
 func NewApi(m httpclient.Method, url string, prefix int) *Api {
