@@ -27,6 +27,7 @@ type HistoryProcessInstance struct {
 	Url                    string              `json:"url"`
 	Variables              []variable.Variable `json:"variable"`
 	TenantId               string              `json:"tenantId"`
+	ProcessDefinitionName  string              `json:"processDefinitionName"`
 }
 
 // List 获取所有流程实例历史
