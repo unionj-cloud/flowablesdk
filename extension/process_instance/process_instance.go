@@ -10,7 +10,10 @@ import (
 // Start 启动一个流程实例
 func Start(req StartProcessRequest) (resp task.Task, err error) {
 	request := flowablesdk.GetRequest(StartApi)
-	request.With(httpclient.WithJson(req))
+	request.With(
+		httpclient.WithJson(req),
+		httpclient.WithHeader(httpclient.FlowableUserId, req.UserId),
+	)
 	data, err := request.DoHttpRequest()
 	if err != nil {
 		return
