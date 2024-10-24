@@ -7,7 +7,7 @@ import (
 	"github.com/unionj-cloud/flowablesdk/task"
 )
 
-func Complete(taskId string, req CompleteRequest) (resp task.Task, err error) {
+func Complete(taskId string, req task.ActionRequest) (resp task.Task, err error) {
 	request := flowablesdk.GetRequest(CompleteApi, taskId)
 	request.With(httpclient.WithJson(req))
 	data, err := request.DoHttpRequest()
@@ -18,5 +18,12 @@ func Complete(taskId string, req CompleteRequest) (resp task.Task, err error) {
 		return task.Task{}, nil
 	}
 	err = json.Unmarshal(data, &resp)
+	return
+}
+
+func Assign(taskId string, req task.ActionRequest) (err error) {
+	request := flowablesdk.GetRequest(AssignApi, taskId)
+	request.With(httpclient.WithJson(req))
+	_, err = request.DoHttpRequest()
 	return
 }
