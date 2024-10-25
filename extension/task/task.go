@@ -27,3 +27,9 @@ func Assign(taskId string, req task.ActionRequest) (err error) {
 	_, err = request.DoHttpRequest()
 	return
 }
+
+func Recall(taskId string) (err error) {
+	request := flowablesdk.GetRequest(RecallApi, taskId)
+	_, err = request.DoHttpRequest()
+	return
+}
