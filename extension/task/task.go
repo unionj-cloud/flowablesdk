@@ -47,3 +47,56 @@ func Move(taskId string, req MoveRequest) (resp task.Task, err error) {
 	err = json.Unmarshal(data, &resp)
 	return
 }
+
+func CompleteByUser(taskId string, req task.ActionRequest, userId string) (resp task.Task, err error) {
+	request := flowablesdk.GetRequest(CompleteApi, taskId)
+	request.With(
+		httpclient.WithJson(req),
+		httpclient.WithHeader(httpclient.FlowableUserId, userId),
+	)
+	data, err := request.DoHttpRequest()
+	if err != nil {
+		return
+	}
+	if len(data) == 0 {
+		return task.Task{}, nil
+	}
+	err = json.Unmarshal(data, &resp)
+	return
+}
+
+func AssignByUser(taskId string, req task.ActionRequest, userId string) (err error) {
+	request := flowablesdk.GetRequest(AssignApi, taskId)
+	request.With(
+		httpclient.WithJson(req),
+		httpclient.WithHeader(httpclient.FlowableUserId, userId),
+	)
+	_, err = request.DoHttpRequest()
+	return
+}
+
+func RecallByUser(taskId string, userId string) (err error) {
+	request := flowablesdk.GetRequest(RecallApi, taskId)
+	request.With(
+		httpclient.WithHeader(httpclient.FlowableUserId, userId),
+	)
+	_, err = request.DoHttpRequest()
+	return
+}
+
+func MoveByUser(taskId string, req MoveRequest, userId string) (resp task.Task, err error) {
+	request := flowablesdk.GetRequest(MoveApi, taskId)
+	request.With(
+		httpclient.WithJson(req),
+		httpclient.WithHeader(httpclient.FlowableUserId, userId),
+	)
+	data, err := request.DoHttpRequest()
+	if err != nil {
+		return
+	}
+	if len(data) == 0 {
+		return task.Task{}, nil
+	}
+	err = json.Unmarshal(data, &resp)
+	return
+}
