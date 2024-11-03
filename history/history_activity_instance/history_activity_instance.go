@@ -26,6 +26,7 @@ type HistoricActivityInstance struct {
 	EndTime                 *time.Time `json:"endTime"`
 	DurationInMillis        int        `json:"durationInMillis"`
 	TenantId                string     `json:"tenantId"`
+	DeleteReason            string     `json:"deleteReason"`
 }
 
 // List 获取流程历史活动
