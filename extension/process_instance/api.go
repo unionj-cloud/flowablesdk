@@ -6,9 +6,11 @@ import (
 )
 
 const (
-	baseUrl = "/runtime/process-instances"
+	baseUrl   = "/runtime/process-instances"
+	detailUrl = baseUrl + "/%s"
+	moveUrl   = detailUrl + "/move"
 )
 
 var (
-	StartApi = flowablesdk.NewApi(httpclient.POST, baseUrl, flowablesdk.ExtensionPrefix)
+	MoveApi = flowablesdk.NewApi(httpclient.POST, moveUrl, flowablesdk.ExtensionPrefix)
 )

@@ -103,6 +103,21 @@ func Start(req StartProcessRequest) (resp ProcessInstance, err error) {
 	return
 }
 
+// StartByUser 启动一个流程实例
+func StartByUser(req StartProcessRequest, userId string) (resp ProcessInstance, err error) {
+	request := flowablesdk.GetRequest(StartApi)
+	request.With(
+		httpclient.WithJson(req),
+		httpclient.WithHeader(httpclient.FlowableUserId, userId),
+	)
+	data, err := request.DoHttpRequest()
+	if err != nil {
+		return
+	}
+	err = json.Unmarshal(data, &resp)
+	return
+}
+
 // ListCandidate 获取单个流程实例所有相关人员
 func ListCandidate(instanceId string) (resp []candidate.Candidate, err error) {
 	request := flowablesdk.GetRequest(ListCandidateApi, instanceId)

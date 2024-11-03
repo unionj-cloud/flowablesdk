@@ -37,4 +37,5 @@ type StartProcessRequest struct {
 	TenantId                   string                     `json:"tenantId,omitempty"`
 	Outcome                    string                     `json:"outcome,omitempty"`
 	OverrideDefinitionTenantId string                     `json:"overrideDefinitionTenantId,omitempty"`
+	ReturnVariables            bool                       `json:"returnVariables,omitempty"`
 }
