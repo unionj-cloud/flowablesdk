@@ -14,6 +14,7 @@ import (
 type HistoryProcessInstance struct {
 	Id                     string              `json:"id"`
 	BusinessKey            string              `json:"businessKey"`
+	BusinessStatus         string              `json:"businessStatus"`
 	ProcessDefinitionId    string              `json:"processDefinitionId"`
 	ProcessDefinitionUrl   string              `json:"processDefinitionUrl"`
 	StartTime              *time.Time          `json:"startTime"`

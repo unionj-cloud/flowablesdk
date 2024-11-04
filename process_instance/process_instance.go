@@ -16,6 +16,7 @@ type ProcessInstance struct {
 	Id                           string              `json:"id"`
 	Url                          string              `json:"url"`
 	BusinessKey                  string              `json:"businessKey"`
+	BusinessStatus               string              `json:"businessStatus"`
 	Suspended                    bool                `json:"suspended"`
 	Ended                        bool                `json:"ended"`
 	ProcessDefinitionId          string              `json:"processDefinitionId"`
